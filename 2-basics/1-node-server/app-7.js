@@ -32,9 +32,9 @@ const server = http.createServer((req, res) => {
           </body>
         </html>
       `);
-    // on envoie la réponse ET on quitte Handler 1.
-    // C'est res.end() qui envoie la réponse et non pas le return
-    // le return permet de quitter Handler 1
+       // on envoie la réponse ET on quitte Handler 1.
+      // C'est res.end() qui envoie la réponse et non pas le return
+      // le return permet de quitter Handler 1
     return res.end();
   }
   if (url === '/register' && method === 'POST') {
