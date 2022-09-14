@@ -32,6 +32,9 @@ const server = http.createServer((req, res) => {
           </body>
         </html>
       `);
+    // on envoie la réponse ET on quitte Handler 1.
+    // C'est res.end() qui envoie la réponse et non pas le return
+    // le return permet de quitter Handler 1
     return res.end();
   }
   if (url === '/register' && method === 'POST') {
@@ -54,11 +57,15 @@ const server = http.createServer((req, res) => {
   res.write(`
       <html>
         <head>
-          <title>My First Page</title>
-        <head>'
+          <title>
+            HAL
+          </title>
+          <link rel="icon" href="data:,">
+        <head>
         <body>
           <h1>Bonjour Je suis Node.js un serveur de la planete Terre</h1>
-        </body>'
+          <h2>votre URL n'est pas reconnue par mon cerveau</h2>
+        </body>
       </html>`);
   res.end();
 });

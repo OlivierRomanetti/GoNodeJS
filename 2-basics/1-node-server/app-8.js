@@ -40,18 +40,19 @@ const server = http.createServer((req, res) => {
       fullData.push(chunk);
     });
 
-    // On a ajouté un return =>
+    // On a ajouté un return
+    // on invoque on() ET on quitte Handler 1.
+    // le return permet de quitter Handler 1
     return req.on('end', () => {
       const parsedFullData = Buffer.concat(fullData).toString();
       const extraterrestrials = parsedFullData.split('=')[1];
       fs.writeFileSync('extraterrestrials.txt', extraterrestrials);
       res.statusCode = 302;
-      res.setHeader('Location', '/'); // la réponse est déjà partie!!! C'est trop tard => on a une erreur!!
+      res.setHeader('Location', '/'); // la réponse n'est pas encore partie => on n'a plus d'erreur :)
       return res.end();
     });
   }
-  console.log('baba');
-  // ce code est éxécuté
+  // ce code n'est à nouveau PAS éxécuté ( sauf si on rentre une URL random)
   res.setHeader('Content-Type', 'text/html');
   res.write(`
       <html>
@@ -63,7 +64,6 @@ const server = http.createServer((req, res) => {
         </body>'
       </html>`);
   res.end();
-  console.log('baba 2');
 });
 
 server.listen(3000);
