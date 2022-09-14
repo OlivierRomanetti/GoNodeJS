@@ -25,6 +25,7 @@ const server = http.createServer((req, res) => {
         <title>
           Homo Sapiens
         </title>
+        <link rel="icon" href="data:,">
       </head>
       <body>
         ${message}

@@ -22,6 +22,7 @@ const server = http.createServer(
             <title>
               Homo Sapiens
             </title>
+            <link rel="icon" href="data:,">
           </head>
           <body>
             <p>Formulaire d'enregistrement pour E.T.</p>
@@ -49,16 +50,15 @@ const server = http.createServer(
         // TRES IMPORTANT A COMPRENDRE :
         // le code ci dessous est éxécuté APRES qu'on ait envoyé la response
         const parsedFullData = Buffer.concat(fullData).toString();
-        const message = parsedFullData.split('=')[1];
-        fs.writeFileSync('message.txt', message);
+        const extraterrestrials = parsedFullData.split('=')[1];
+        fs.writeFileSync('extraterrestrials.txt', extraterrestrials);
       });
       // Si la réponse est dépendante du handler ci dessus, il faut dans ce cas inclure le code ci dessous dans le handler ci dessus
-      // Faire l'essai => on a une erreur => expliquer pourquoi
       res.statusCode = 302;
       res.setHeader('Location', '/');
       return res.end();
     }
-    // ce code n'est pas éxécuté
+    // le code ci dessous n'est jamais éxécuté
     res.setHeader('Content-Type', 'text/html');
     res.write(`
       <html>
