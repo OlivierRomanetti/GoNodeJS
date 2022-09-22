@@ -35,9 +35,8 @@ const requestHandler = (req, res) => {
 
     return req.on('end', () => {
       const parsedFullData = Buffer.concat(fullData).toString();
-      const extraterrestrials = parsedFullData.split('=')[1];
-      // ICI on est asynchrone, le code n'est pas bloqué
-      // On passe alors un callback
+      const extraterrestrials = parsedFullData.split('=')[0]; // Ici on met 0 au lieu de 1, pour créer une erreur sémantique => on voit que dans extraterrestrials.txt on n'a pas ce que l'on souhaite avoir
+ 
       fs.writeFile('extraterrestrials.txt', extraterrestrials, (err) => {
         res.statusCode = 302;
         res.setHeader('Location', '/');
@@ -60,7 +59,3 @@ const requestHandler = (req, res) => {
 };
 
 module.exports = requestHandler;
-// on peut aussi 
-// - exporter un object avec properties ou bien
-// - enlever le mot clé module
-// - utiliser la syntaxe module.exports.property = value qui est équivalente à exporter un object
