@@ -30,8 +30,9 @@ server.listen(3000);
 
 // url peut n'être que '/' si rien après localhost:3000
 
-
 // NOTE
 // On a ajouté <link rel="icon" href="data:,"> dans le <head></head> 
 // afin d'empêcher la request automatique du browser pour un favicon ce qui perturberait notre exemple
 // https://webdesign.tutsplus.com/tutorials/prevent-automatic-favicon-requests--cms-34762
+
+// On peut aller voir le body dans la tab Network du dev tool

@@ -12,10 +12,10 @@ const http = require('http');
 
 // On crée un serveur avec la méthode createServer qui nous renvoie un objet server
 // Celle ci prend en paramètre un requestListener
-// C'est une 'event driven architecture', qui est énormément utilisée par Node.js
+// C'est une 'event driven architecture', qui est beaucoup utilisée par Node.js
 
-// Le request listener est une function (anonyme dans ce cas) qui sera invoquée et exécutée par Node.js 
-// à chaque fois qu'une request entrante arrivera
+// Le request listener est une function (anonyme dans ce cas) 
+// qui sera invoquée et exécutée par Node.js à chaque fois qu'une request entrante arrivera
 // C'est un callback
 // 2 paramètres nous seront passés par Node.js :
 // req: un objet représentant la requêtre entrante
@@ -29,10 +29,9 @@ const server = http.createServer((req, res) => {
 // On demande ensuite au serveur d'écouter, ici sur le port 3000
 server.listen(3000);
 
-// On lance ensuite l'app en tapant dans notre terminal la commande 
+// On lance ensuite l'application en tapant dans notre terminal la commande 
 // node app.js
 // => le terminal ne nous redonne pas la main et c'est normal!
-// un process est maintenant lancé, et ce process écoute sur le port 3000 de notre machine les requests entrantes
-// un process est maintenant lancé, un web server, qui écoute continuellement sur le port 3000 de notre machine les requests entrantes
-
+// un process est maintenant lancé, un web server
+// Ce web server écoute sur le port 3000 de notre machine les requests entrantes
 // Ouvrez le browser et aller à l'url localhost:3000

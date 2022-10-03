@@ -40,19 +40,19 @@ const server = http.createServer((req, res) => {
       fullData.push(chunk);
     });
 
-    // On a ajouté un return
-    // on invoque on() ET on quitte Handler 1.
-    // le return permet de quitter Handler 1
     return req.on('end', () => {
       const parsedFullData = Buffer.concat(fullData).toString();
       const extraterrestrials = parsedFullData.split('=')[1];
-      // ICI on est synchrone, le code est bloqué jusqu'à la fin de l'écriture du file
-      // pas un problème pour notre exemple, mais dans le cas de gros file cela peut devenir problématique!
-      fs.writeFileSync('extraterrestrials.txt', extraterrestrials); 
-      res.statusCode = 302;
-      res.setHeader('Location', '/'); // la réponse n'est pas encore partie => on n'a plus d'erreur :)
-      return res.end();
+      // ICI on est asynchrone, le code n'est pas bloqué
+      // On passe alors un callback qui sera éxécuté une fois que le fichier aura été écrit dans le file system.
+      // éventuellement une erreur peut être passée en paramètre
+      fs.writeFile('extraterrestrials.txt', extraterrestrials, (err) => {
+        res.statusCode = 302;
+        res.setHeader('Location', '/'); 
+        return res.end();
+      });
     });
+
   }
   // ce code n'est à nouveau PAS éxécuté ( sauf si on rentre une URL random)
   res.setHeader('Content-Type', 'text/html');

@@ -10,11 +10,11 @@ const fs = require('fs');
 const server = http.createServer((req, res) => {
   const url = req.url;
   const method = req.method;
+
   if (url === '/') {
     res.write(`
         <html>
           <head>
-            <link rel="icon" href="data:,">
             <title>
               Homo Sapiens
             </title>
@@ -39,31 +39,30 @@ const server = http.createServer((req, res) => {
     req.on('data', (chunk) => {
       fullData.push(chunk);
     });
-
-    // On a ajouté un return
-    // on invoque on() ET on quitte Handler 1.
-    // le return permet de quitter Handler 1
-    return req.on('end', () => {
+    req.on('end', () => {
       const parsedFullData = Buffer.concat(fullData).toString();
       const extraterrestrials = parsedFullData.split('=')[1];
-      // ICI on est synchrone, le code est bloqué jusqu'à la fin de l'écriture du file
-      // pas un problème pour notre exemple, mais dans le cas de gros file cela peut devenir problématique!
-      fs.writeFileSync('extraterrestrials.txt', extraterrestrials); 
+      fs.writeFileSync('extraterrestrials.txt', extraterrestrials);
+      // Cette fois on a inclus le code dans le handler
       res.statusCode = 302;
-      res.setHeader('Location', '/'); // la réponse n'est pas encore partie => on n'a plus d'erreur :)
+      res.setHeader('Location', '/'); // la réponse est déjà partie!!! C'est trop tard => on a une erreur!!
       return res.end();
     });
   }
-  // ce code n'est à nouveau PAS éxécuté ( sauf si on rentre une URL random)
+  // Cette fois ce code est éxécuté
   res.setHeader('Content-Type', 'text/html');
   res.write(`
       <html>
         <head>
-          <title>My First Page</title>
-        <head>'
+          <title>
+            HAL
+          </title>
+          <link rel="icon" href="data:,">
+        <head>
         <body>
           <h1>Bonjour Je suis Node.js un serveur de la planete Terre</h1>
-        </body>'
+          <h2>votre URL n'est pas reconnue par mon cerveau</h2>
+        </body>
       </html>`);
   res.end();
 });
