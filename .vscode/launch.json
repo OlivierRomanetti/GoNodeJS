@@ -8,9 +8,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "skipFiles": ["<node_internals>/**"],
-      "program": "${workspaceFolder}/2-basics/3-env-dev/app.js",
-      "outFiles": ["${workspaceFolder}/**/*.js"],
+      "program": "${workspaceFolder}/2-basics/3-env-dev/2-install-nodemon/app.js",
       "restart": true,
       "runtimeExecutable": "nodemon",
       "console": "integratedTerminal"
