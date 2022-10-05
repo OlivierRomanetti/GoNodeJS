@@ -8,10 +8,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/2-basics/3-env-dev/2-install-nodemon/app.js",
-      "restart": true,
-      "runtimeExecutable": "nodemon",
-      "console": "integratedTerminal"
+      "program": "${workspaceFolder}/2-basics/3-env-dev/2-install-nodemon/app.js"
     }
   ]
 }
