@@ -43,10 +43,10 @@ const server = http.createServer((req, res) => {
     return req.on('end', () => {
       const parsedFullData = Buffer.concat(fullData).toString();
       const extraterrestrials = parsedFullData.split('=')[1];
-      // ICI on est asynchrone, le code n'est pas bloqué
+      // ICI on est ASYNCHRONE, le code n'est pas bloqué
       // On passe alors un callback qui sera éxécuté une fois que le fichier aura été écrit dans le file system.
       // éventuellement une erreur peut être passée en paramètre
-      fs.writeFile('extraterrestrials.txt', extraterrestrials, (err) => {
+      fs.writeFile('extraterrestrials-10.txt', extraterrestrials, (err) => {
         res.statusCode = 302;
         res.setHeader('Location', '/'); 
         return res.end();

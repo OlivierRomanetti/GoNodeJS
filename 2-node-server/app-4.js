@@ -7,8 +7,6 @@
 const http = require('http');
 
 const server = http.createServer((req, res) => {
-  //console.log("::: res :::  ", res);
-
   res.setHeader('Content-Type', 'text/html');
   res.write(`
     <html>
@@ -24,14 +22,12 @@ const server = http.createServer((req, res) => {
     </html>
   `);
   res.end();
-})
+});
 
 server.listen(3000);
 
-// url peut n'être que '/' si rien après localhost:3000
-
 // NOTE
-// On a ajouté <link rel="icon" href="data:,"> dans le <head></head> 
+// On a ajouté <link rel="icon" href="data:,"> dans le <head></head>
 // afin d'empêcher la request automatique du browser pour un favicon ce qui perturberait notre exemple
 // https://webdesign.tutsplus.com/tutorials/prevent-automatic-favicon-requests--cms-34762
 

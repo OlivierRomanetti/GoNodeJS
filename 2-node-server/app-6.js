@@ -17,6 +17,7 @@ const server = http.createServer(
     // => en fonction de l'url de la request on éxécute un certain code
     // Ici on affiche une form pour récupérer des datas auprès des E.T.
     if (url === '/') {
+      console.log(':::URL:::', url);
       res.write(`
         <html>
           <head>
@@ -47,7 +48,8 @@ const server = http.createServer(
     // => en fonction de l'url, on éxécute un certain code
     // On passe ici lorsque le formulaire est soumis par un E.T.
     if (url === '/register' && method === 'POST') {
-      fs.writeFileSync('extraterrestrials.txt', "TEXTE NON DYNAMIQUE");
+      console.log(':::URL:::', url);
+      fs.writeFileSync('extraterrestrials-6.txt', 'TEXTE NON DYNAMIQUE');
       res.statusCode = 302;
       // On redirige le user à l'url "/""
       res.setHeader('Location', '/');

@@ -42,14 +42,14 @@ const server = http.createServer((req, res) => {
     req.on('end', () => {
       const parsedFullData = Buffer.concat(fullData).toString();
       const extraterrestrials = parsedFullData.split('=')[1];
-      fs.writeFileSync('extraterrestrials.txt', extraterrestrials);
+      fs.writeFileSync('extraterrestrials-8.txt', extraterrestrials);
       // Cette fois on a inclus le code dans le handler
       res.statusCode = 302;
-      res.setHeader('Location', '/'); // la réponse est déjà partie!!! C'est trop tard => on a une erreur!!
+      res.setHeader('Location', '/'); // WARNING::::::: la réponse est déjà partie!!! C'est trop tard => on a une erreur!!
       return res.end();
     });
   }
-  // Cette fois ce code est éxécuté
+  // WARNING:::::::Cette fois ce code est éxécuté
   res.setHeader('Content-Type', 'text/html');
   res.write(`
       <html>

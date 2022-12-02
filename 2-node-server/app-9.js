@@ -40,21 +40,21 @@ const server = http.createServer((req, res) => {
       fullData.push(chunk);
     });
 
-    // On a ajouté un return
+    // WARNING::::::: On ajoute un return DEVANT req.on
     // on invoque on() ET on quitte Handler 1.
     // le return permet de quitter Handler 1
     return req.on('end', () => {
       const parsedFullData = Buffer.concat(fullData).toString();
       const extraterrestrials = parsedFullData.split('=')[1];
-      // ICI on est synchrone, le code est bloqué jusqu'à la fin de l'écriture du file
+      // WARNING:::::::  ICI on est SYNCHRONE, le code est bloqué jusqu'à la fin de l'écriture du file
       // pas un problème pour notre exemple, mais dans le cas de gros file cela peut devenir problématique!
-      fs.writeFileSync('extraterrestrials.txt', extraterrestrials); 
+      fs.writeFileSync('extraterrestrials-9.txt', extraterrestrials); 
       res.statusCode = 302;
       res.setHeader('Location', '/'); // la réponse n'est pas encore partie => on n'a plus d'erreur :)
       return res.end();
     });
   }
-  // ce code n'est à nouveau PAS éxécuté ( sauf si on rentre une URL random)
+  // WARNING::::::: ce code n'est à nouveau PAS EXECUTE ( sauf si on rentre une URL random)
   res.setHeader('Content-Type', 'text/html');
   res.write(`
       <html>
