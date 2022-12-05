@@ -22,7 +22,7 @@ const http = require('http');
 // res: un objet représentant la réponse que l'on souhaite renvoyer
 
 const server = http.createServer((req, res) => {
-  console.log("the server has started and listen on port 3000");
+  console.log("Je suis exécuté à chaque fois qu'une requête arrive au serveur");
 })
 
 // On demande ensuite au serveur d'écouter, ici sur le port 3000
